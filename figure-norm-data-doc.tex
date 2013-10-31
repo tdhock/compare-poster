@@ -1,7 +1,31 @@
-\documentclass{article}
+\documentclass[twocolumn]{article}
 \usepackage{tikz,amsmath,amssymb,amsthm,fullpage}
+\usepackage[a3paper]{geometry}
 \pagestyle{empty}
+\newcommand{\RR}{\mathbb R}
 \begin{document}
+
+\section*{Learning to compare}
+\begin{itemize}
+\item We have $n$ labeled training pairs $(\mathbf x_i, \mathbf x_i', y_i)$.
+\item Input features $\mathbf x_i,\mathbf x_i'\in\RR^p$.
+\item Output label $y_i\in\{-1,0,1\}$ indicates which element is
+  better:
+\end{itemize}
+\begin{equation*}
+  \label{eq:z}
+  y_i =
+  \begin{cases}
+    -1 &  r(\mathbf x_i)>r(\mathbf x_i')
+    \text{, $\mathbf x_i$ is better than $\mathbf x'_i$},\\
+    0 & r(\mathbf x_i) = r(\mathbf x_i')
+    \text{, $\mathbf x_i$ is as good as $\mathbf x'_i$},\\
+    1 & r(\mathbf x_i)<r(\mathbf x_i')
+    \text{, $\mathbf x'_i$ is better than $\mathbf x_i$}.
+  \end{cases}
+\end{equation*}
+
+\section*{Geometric interpretation}
 
 \input{figure-norm-data}
 
