@@ -1,7 +1,7 @@
 works_with_R("3.0.2", plyr="1.8", reshape2="1.2.2")
 
 source("tikz.R")
-source("Nsamp.R")
+Nsamp <- "100"
 source("colors.R")
 
 load("simulation.samples.RData")
@@ -66,7 +66,7 @@ makelabel <- function(x){
 }
 percents$label <- makelabel(percents$norm)
 err$label <- makelabel(err$norm)
-indicator <- data.frame(N=as.integer(Nsamp), label=makelabel(show.norm))
+indicator <- data.frame(N=as.integer(Nsamp))
 leg <- "function"
 boring <- ggplot(percents, aes(N, mean, group=fit.name))+
   geom_vline(aes(xintercept=N),size=2,data=indicator)+

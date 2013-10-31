@@ -1,16 +1,17 @@
-\documentclass[twocolumn]{article}
+\documentclass{article}
 \usepackage{tikz,amsmath,amssymb,amsthm,fullpage}
-\usepackage[a3paper]{geometry}
+\usepackage[a2paper]{geometry}
 \pagestyle{empty}
 \newcommand{\RR}{\mathbb R}
 \begin{document}
+
+\begin{minipage}{3.5in}
 
 \section*{Learning to compare}
 \begin{itemize}
 \item We have $n$ labeled training pairs $(\mathbf x_i, \mathbf x_i', y_i)$.
 \item Input features $\mathbf x_i,\mathbf x_i'\in\RR^p$.
-\item Output label $y_i\in\{-1,0,1\}$ indicates which element is
-  better:
+\item Output label $y_i\in\{-1,0,1\}$ indicates which element is better:
 \end{itemize}
 \begin{equation*}
   \label{eq:z}
@@ -25,8 +26,32 @@
   \end{cases}
 \end{equation*}
 
+\section*{Examples}
+
+\begin{description}
+\item[Movies]
+  \textit{Les Mis\'erables} is better than \textit{Star Wars}\\
+  $(\mathbf x_{\textit{Les Mis\'erables}}, \mathbf x_{\textit{Star Wars}}, -1)$\\
+  \textit{The Empire Strikes Back} is as good as \textit{Star Wars}\\
+  $(\mathbf x_{\textit{The Empire Strikes Back}}, \mathbf x_{\textit{Star Wars}}, 0)$\\
+  Features $\mathbf x$ can be length in minutes, year of theatrical
+  release, indicators for genre, actors/actresses, directors, etc.
+\item[Sushi] Kamishima \emph{et al.}\\
+  100 different sushis (maguro, toro, etc.) sampled by\\
+  5000 different people, who each rated\\
+  10 sushi on a 5 point scale, which we convert to\\
+  5 preference pairs, for a total of\\
+  17,832 equality $y_i=0$ and \\
+  7,168 inequality $y_i\in\{-1,1\}$ pairs.\\
+  Features $\mathbf x\in\RR^{14}$ are taster birthplace, current home,
+  sushi oiliness, price, etc.
+\end{description}
+
 \section*{Geometric interpretation}
 
 \input{figure-norm-data}
+
+  
+\end{minipage}
 
 \end{document}

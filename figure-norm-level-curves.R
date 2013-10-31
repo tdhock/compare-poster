@@ -1,10 +1,8 @@
-##load("simulation.RData")
-
 load("simulation.samples.RData")
 
 source("tikz.R")
-source("Nsamp.R")
 source("colors.R")
+Nsamp <- "100"
 
 pfactor <- function(x){
   x <- ifelse(x=="training data", x, paste(x, "model"))
@@ -21,7 +19,7 @@ Nseed <- 2
 norm.list <- simulation.samples$data[[Nsamp]][[Nseed]]
 seg.df <- data.frame()
 arrow.df <- data.frame()
-for(norm in show.norm){
+for(norm in names(norm.list)){
   Pairs <- norm.list[[norm]]$train
   m <- with(Pairs, rbind(Xi, Xip))
   yi <- Pairs$yi
@@ -53,9 +51,9 @@ segPlot <- basePlot+
 print(segPlot)
 
 
-##all.ranks <- simulation$rank
-all.ranks <- subset(simulation.samples$rank,
-                    seed==Nseed & N==Nsamp & norm==show.norm)
+all.ranks <- subset(simulation.samples$rank, seed==Nseed & N==Nsamp)
+##all.ranks <- subset(simulation.samples$rank,
+##                    seed==Nseed & N==Nsamp & norm==show.norm)
 labels <- c(l1="||x||_1^2",
             l2="||x||_2^2",
             linf="||x||_\\infty^2")
@@ -84,7 +82,7 @@ p <- ggplot()+
                data=toplot, size=1, colour="black")+
   scale_alpha_manual("ranking function",
                      values=c(truth=1/3, latent=1/3,learned=1))+
-  facet_grid(.~fun)+
+  facet_grid(label~fun)+
   theme_bw()+
   theme(panel.margin=unit(0,"cm"))+
   coord_equal()+
@@ -101,7 +99,7 @@ p <- ggplot()+
   guides(colour=guide_legend(keyheight=2, order=1))
 print(p)
 
-tikz("figure-norm-level-curves.tex", h=2)
+tikz("figure-norm-level-curves.tex", h=4.5)
 print(p)
 dev.off()
 

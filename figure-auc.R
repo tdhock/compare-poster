@@ -1,38 +1,32 @@
 works_with_R("3.0.2", plyr="1.8")
 
 load("simulation.roc.RData")
-load("sushi.roc.RData")
+##load("sushi.roc.RData")
 
 source("tikz.R")
 source("colors.R")
 
 library(grid)
 
-mslr.roc$auc$norm <- "mslr"
-auc <- rbind(simulation.roc$auc,
-             mslr.roc$auc[,names(simulation.roc$auc)])
+##auc <- rbind(simulation.roc$auc,
+##             mslr.roc$auc[,names(simulation.roc$auc)])
 auc <- simulation.roc$auc
-auc <- sushi$auc
-
-out.csv <- subset(auc, fit.name!="mslr")
-names(out.csv)[1] <- "model"
-write.csv(out.csv,file="CompareAUC.csv", row.names=FALSE, quote=FALSE)
+##auc <- sushi$auc
 
 labels <- c(l1="1",
             l2="2",
             linf="\\infty")
 labels[] <- sprintf("$r(\\mathbf x) = ||\\mathbf x||_%s^2$", labels)
-labels[["mslr"]] <- "MSLR"
 makelabel <- function(x)labels[as.character(x)]
 leg <- "function"
-ggplot(sushi.roc$roc, aes(FPR, TPR))+
-  geom_path(aes(colour=fit.name, group=interaction(fit.name, seed)))+
-  facet_grid(norm~prop)+
-  theme_bw()+
-  theme(panel.margin=unit(0,"cm"))+
-  scale_colour_manual(leg,values=model.colors)+
-  coord_equal()+
-  geom_abline()
+## ggplot(sushi.roc$roc, aes(FPR, TPR))+
+##   geom_path(aes(colour=fit.name, group=interaction(fit.name, seed)))+
+##   facet_grid(norm~prop)+
+##   theme_bw()+
+##   theme(panel.margin=unit(0,"cm"))+
+##   scale_colour_manual(leg,values=model.colors)+
+##   coord_equal()+
+##   geom_abline()
 auc.stats <- ddply(auc, .(fit.name, norm, prop), summarize,
                    mean=mean(auc), sd=sd(auc))
 
