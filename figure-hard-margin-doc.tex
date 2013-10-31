@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{tikz,amsmath,amssymb,amsthm,fullpage}
+\usepackage[a2paper]{geometry}
+\pagestyle{empty}
+\newcommand{\RR}{\mathbb R}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\begin{document}
+
+\section*{Find the max-margin linear separator
+  in a high-dimensional feature space}
+
+\begin{minipage}{7in}
+\input{figure-hard-margin}
+\end{minipage}
+\begin{minipage}{3in}
+   \begin{eqnarray*}
+  \maximize_{\mu\in\RR^+, \mathbf w\in\RR^p}\ &&\hskip -0.5cm \mu 
+  \hskip 1in \textbf{(LP)} \\
+  \text{subject to}\ && \hskip -0.5cm \mu \leq
+  1-|\mathbf w^\intercal (\mathbf x_i' - \mathbf x_i)|,\ 
+  \forall\  i\in \mathcal I_0,\\
+  &&\hskip -0.5cm
+  \mu \leq -1 +  \mathbf w^\intercal(\mathbf x_i'-\mathbf x_i)y_i,
+  \ \forall\ i\in \mathcal I_1\cup \mathcal I_{-1}.
+\end{eqnarray*}
+\begin{eqnarray*}
+  \minimize_{\mathbf u\in\RR^p, \beta\in\RR}\ &&\hskip -0.5cm
+  \mathbf u^\intercal \mathbf u  
+  \hskip 1in \textbf{(QP)} \\
+\text{subject to}\ &&\hskip -0.5cm 
+    \tilde y_i (\beta + 
+    \mathbf u^\intercal( \mathbf{\tilde x}_i'-\mathbf{\tilde x}_i) ) \geq 1,
+    \ \forall i\in\{1,\dots,m\}.
+\end{eqnarray*}
+\end{minipage}
+
+\end{document}
