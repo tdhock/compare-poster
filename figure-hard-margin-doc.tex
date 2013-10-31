@@ -7,13 +7,13 @@
 \DeclareMathOperator*{\minimize}{minimize}
 \begin{document}
 
-\section*{Find the max-margin linear separator
-  in a high-dimensional feature space}
-
 \begin{minipage}{7in}
+\section*{Find the max-margin linear separator}
+
 \input{figure-hard-margin}
 \end{minipage}
-\begin{minipage}{3in}
+\begin{minipage}{4in}
+\section*{Two ways to measure the margin}
    \begin{eqnarray*}
   \maximize_{\mu\in\RR^+, \mathbf w\in\RR^p}\ &&\hskip -0.5cm \mu 
   \hskip 1in \textbf{(LP)} \\
@@ -33,6 +33,64 @@
     \mathbf u^\intercal( \mathbf{\tilde x}_i'-\mathbf{\tilde x}_i) ) \geq 1,
     \ \forall i\in\{1,\dots,m\}.
 \end{eqnarray*}
+\section*{QP change of variables}
+\begin{equation*}
+\mathbf{  \tilde X} = \left[
+    \begin{array}{c}
+      \mathbf X_1 \\
+      \mathbf X_{-1}'\\
+      \mathbf X_0\\
+      \mathbf X_0'
+    \end{array}
+  \right],\ 
+  \mathbf{\tilde X'} = \left[
+    \begin{array}{c}
+      \mathbf X_1' \\
+      \mathbf X_{-1}\\
+      \mathbf X_0'\\
+      \mathbf X_0
+    \end{array}
+  \right],\ 
+  \mathbf{\tilde y} = \left[
+    \begin{array}{c}
+      \mathbf 1_{|\mathcal I_1|} \\
+      \mathbf 1_{|\mathcal I_{-1}|}\\
+      \mathbf{-1}_{|\mathcal I_0|}\\
+      \mathbf{-1}_{|\mathcal I_0|}
+    \end{array}
+  \right].
+\end{equation*}
+\section*{Models tested}
+  \begin{tabular}{r|cc|cc|}
+Input:&    \multicolumn{2}{c|}{equality pairs}
+&    \multicolumn{2}{c|}{inequality pairs}\\
+    & $|\mathcal I_0|$ %$\tilde y_i= -1$
+    & --- 
+    & $|\mathcal I_1|+|\mathcal I_{-1}|$ %$\tilde y_i=1$
+    & $\rightarrow$
+    \\
+    \hline
+    rank 
+    & 0 
+    & 
+    & $|\mathcal I_1|+|\mathcal I_{-1}|$ 
+    & $\rightarrow$ 
+    \\
+    \hline
+    rank2 
+    & $2|\mathcal I_0|$ 
+    & $\leftarrow \rightarrow$
+    & $2(|\mathcal I_1|+|\mathcal I_{-1}|)$ 
+    & $\rightarrow \rightarrow$
+    \\
+    \hline
+    (proposed) compare 
+    & $2|\mathcal I_0|$ 
+    & --- --- 
+    & $|\mathcal I_1|+|\mathcal I_{-1}|$ 
+    & $\rightarrow$\\
+    \hline
+  \end{tabular}
 \end{minipage}
 
 \end{document}
