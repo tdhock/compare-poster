@@ -7,9 +7,11 @@ figure-norm-data-doc.pdf: figure-norm-data-doc.tex figure-norm-data.tex
 figure-norm-data.tex: figure-norm-data.R tikz.R colors.R
 	R --no-save < $<
 
-figure-hard-margin-doc.pdf: figure-hard-margin-doc.tex figure-hard-margin.tex
+figure-hard-margin-doc.pdf: figure-hard-margin-doc.tex figure-hard-margin.tex table-sushi.tex
 	pdflatex $<
 figure-hard-margin.tex: figure-hard-margin.R tikz.R colors.R
+	R --no-save < $<
+table-sushi.tex: table-sushi.R
 	R --no-save < $<
 
 figure-results.pdf: figure-results.tex figure-norm-level-curves.tex figure-simulation-samples.tex figure-auc.tex
