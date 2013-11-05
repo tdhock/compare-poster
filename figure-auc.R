@@ -1,22 +1,22 @@
 works_with_R("3.0.2", plyr="1.8")
 
 load("simulation.roc.RData")
-##load("sushi.roc.RData")
+load("sushi.roc.RData")
 
 source("tikz.R")
 source("colors.R")
 
 library(grid)
 
-##auc <- rbind(simulation.roc$auc,
-##             mslr.roc$auc[,names(simulation.roc$auc)])
-auc <- simulation.roc$auc
-##auc <- sushi$auc
+sushi.roc$auc$norm <- "sushi"
+auc <- rbind(simulation.roc$auc,
+             sushi.roc$auc[,names(simulation.roc$auc)])
 
 labels <- c(l1="1",
             l2="2",
             linf="\\infty")
 labels[] <- sprintf("$r(\\mathbf x) = ||\\mathbf x||_%s^2$", labels)
+labels[["sushi"]] <- "sushi"
 makelabel <- function(x)labels[as.character(x)]
 leg <- "function"
 ## ggplot(sushi.roc$roc, aes(FPR, TPR))+

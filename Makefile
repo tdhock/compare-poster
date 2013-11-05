@@ -14,10 +14,10 @@ figure-hard-margin.tex: figure-hard-margin.R tikz.R colors.R
 
 figure-results.pdf: figure-results.tex figure-norm-level-curves.tex figure-simulation-samples.tex figure-auc.tex
 	pdflatex $<
-figure-simulation-samples.tex: figure-simulation-samples.R simulation.samples.RData tikz.R colors.R
+figure-simulation-samples.tex: figure-simulation-samples.R simulation.samples.RData tikz.R colors.R sushi.samples.RData
 	R --no-save < $<
 figure-norm-level-curves.tex: figure-norm-level-curves.R tikz.R simulation.samples.RData colors.R
 	R --no-save < $<
-figure-auc.tex: figure-auc.R simulation.roc.RData tikz.R colors.R
+figure-auc.tex: figure-auc.R simulation.roc.RData tikz.R colors.R sushi.roc.RData
 	R --no-save < $<
 ## RData files are copied from compare-paper.
