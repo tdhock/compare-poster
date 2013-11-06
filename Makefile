@@ -11,7 +11,7 @@ figure-hard-margin-doc.pdf: figure-hard-margin-doc.tex figure-hard-margin.tex ta
 	pdflatex $<
 figure-hard-margin.tex: figure-hard-margin.R tikz.R colors.R
 	R --no-save < $<
-table-sushi.tex: table-sushi.R
+table-sushi.tex: table-sushi.R sushi.csv
 	R --no-save < $<
 
 figure-results.pdf: figure-results.tex figure-norm-level-curves.tex figure-simulation-samples.tex figure-auc.tex
