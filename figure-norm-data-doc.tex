@@ -6,8 +6,19 @@
 \begin{document}
 
 \begin{minipage}{3.5in}
+\section*{Abstract}
+  In ranking problems, the goal is to learn a ranking function
+  $r(\mathbf x)\in\RR$ from labeled pairs $\mathbf x,\mathbf x'$ of
+  input points. We consider the related comparison
+  problem, where the label $y\in\{-1,0,1\}$ indicates which element of
+  the pair is better, or if there is no significant difference. We
+  cast the learning problem as a margin maximization, and show that it
+  can be solved by converting it to a standard SVM. We use simulated
+  nonlinear patterns and a real learning to rank sushi data set to
+  show that our proposed SVMcompare algorithm outperforms SVMrank when
+  there are equality $y=0$ pairs.
 
-\section*{Learning to compare}
+\section*{The learning to compare problem}
 \begin{itemize}
 \item We have $n$ labeled training pairs $(\mathbf x_i, \mathbf x_i', y_i)$.
 \item Input features $\mathbf x_i,\mathbf x_i'\in\RR^p$.
@@ -26,26 +37,13 @@
   \end{cases}
 \end{equation*}
 
-\section*{Examples}
-
-\begin{description}
-\item[Movies]
+\section*{Example: movies}
   \textit{Les Mis\'erables} is better than \textit{Star Wars}\\
   $(\mathbf x_{\textit{Les Mis\'erables}}, \mathbf x_{\textit{Star Wars}}, -1)$\\
   \textit{The Empire Strikes Back} is as good as \textit{Star Wars}\\
   $(\mathbf x_{\textit{The Empire Strikes Back}}, \mathbf x_{\textit{Star Wars}}, 0)$\\
   Features $\mathbf x$ can be length in minutes, year of theatrical
   release, indicators for genre, actors/actresses, directors, etc.
-\item[Sushi] Kamishima \emph{et al.}\\
-  100 different sushis (maguro, toro, etc.) sampled by\\
-  5000 different people, who each rated\\
-  10 sushi on a 5 point scale, which we convert to\\
-  5 preference pairs, for a total of\\
-  17,832 equality $y_i=0$ and \\
-  7,168 inequality $y_i\in\{-1,1\}$ pairs.\\
-  Features $\mathbf x\in\RR^{14}$ are taster birthplace, current home,
-  sushi oiliness, price, etc.
-\end{description}
 
 \section*{Geometric interpretation}
 

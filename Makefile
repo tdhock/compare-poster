@@ -1,5 +1,8 @@
-HOCKING-svm-compare.pdf: HOCKING-svm-compare.tex figure-norm-data-doc.pdf figure-results.pdf figure-hard-margin-doc.pdf 
+HOCKING-svm-compare.pdf: HOCKING-svm-compare.tex figure-norm-data-doc.pdf figure-results.pdf figure-hard-margin-doc.pdf sushi.pdf
 	rm -f *.aux *.bbl
+	pdflatex $<
+
+sushi.pdf: sushi.tex table-sushi.tex
 	pdflatex $<
 
 figure-norm-data-doc.pdf: figure-norm-data-doc.tex figure-norm-data.tex
@@ -7,7 +10,7 @@ figure-norm-data-doc.pdf: figure-norm-data-doc.tex figure-norm-data.tex
 figure-norm-data.tex: figure-norm-data.R tikz.R colors.R
 	R --no-save < $<
 
-figure-hard-margin-doc.pdf: figure-hard-margin-doc.tex figure-hard-margin.tex table-sushi.tex
+figure-hard-margin-doc.pdf: figure-hard-margin-doc.tex figure-hard-margin.tex
 	pdflatex $<
 figure-hard-margin.tex: figure-hard-margin.R tikz.R colors.R
 	R --no-save < $<
