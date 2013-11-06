@@ -18,6 +18,8 @@ for(i in 1:nrow(meta)){
   tab <- rbind(tab, sprintf("%.1f%%", percents))
 }
 colnames(tab) <- names(percents)
+colnames(tab)[1] <- "(worst) 0"
+colnames(tab)[5] <- "(best) 4"
 out <- cbind(meta[,c("english", "romaji", "rated")], tab)
 xt <- xtable(out, align="rrrrrrrrr")
 print(xt, include.rownames=FALSE, floating=FALSE, file="table-sushi.tex")
