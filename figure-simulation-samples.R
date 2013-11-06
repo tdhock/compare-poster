@@ -73,7 +73,7 @@ makelabel <- function(x){
 }
 percents$label <- makelabel(percents$norm)
 err$label <- makelabel(err$norm)
-indicator <- data.frame(N=as.integer(Nsamp))
+indicator <- data.frame(N=as.integer(Nsamp), label=makelabel(names(labels)))
 leg <- "function"
 boring <- ggplot(percents, aes(N, mean, group=fit.name))+
   geom_vline(aes(xintercept=N),size=2,data=indicator)+

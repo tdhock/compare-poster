@@ -32,7 +32,7 @@ using clickthrough data,'' in KDD 2002.
 \begin{eqnarray*}
   \minimize_{\mathbf u\in\RR^p, \beta\in\RR}\ &&\hskip -0.5cm
   \mathbf u^\intercal \mathbf u  
-  \hskip 1in \textbf{(QP)} \\
+  \hskip 1in \textbf{(hard margin SVM QP)} \\
 \text{subject to}\ &&\hskip -0.5cm 
     \tilde y_i (\beta + 
     \mathbf u^\intercal( \mathbf{\tilde x}_i'-\mathbf{\tilde x}_i) ) \geq 1,

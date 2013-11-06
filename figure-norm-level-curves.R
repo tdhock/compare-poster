@@ -82,7 +82,7 @@ p <- ggplot()+
                data=toplot, size=1, colour="black")+
   scale_alpha_manual("ranking function",
                      values=c(truth=1/3, latent=1/3,learned=1))+
-  facet_grid(label~fun)+
+  facet_grid(fun~label)+
   theme_bw()+
   theme(panel.margin=unit(0,"cm"))+
   coord_equal()+
@@ -99,7 +99,7 @@ p <- ggplot()+
   guides(colour=guide_legend(keyheight=2, order=1))
 print(p)
 
-tikz("figure-norm-level-curves.tex", h=4.5)
+tikz("figure-norm-level-curves.tex", h=5, w=6)
 print(p)
 dev.off()
 
