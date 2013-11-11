@@ -2,6 +2,17 @@ HOCKING-svm-compare.pdf: HOCKING-svm-compare.tex figure-norm-data-doc.pdf figure
 	rm -f *.aux *.bbl
 	pdflatex $<
 
+# TODO: 
+
+# SVMrank optimization problem.
+
+# pictures of big/small n, \rho on the left/right of the results
+# figures.
+
+# Lemma.
+
+# ref R package.
+
 sushi.pdf: sushi.tex table-sushi.tex
 	pdflatex $<
 
